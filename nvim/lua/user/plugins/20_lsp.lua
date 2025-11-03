@@ -31,7 +31,7 @@ return {
         local bufmap = function(mode, lhs, rhs, desc)
           vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, noremap = true, desc = "LSP: " .. desc })
         end
-        
+
         bufmap("n", "K", vim.lsp.buf.hover, "Hover")
         bufmap("n", "gd", vim.lsp.buf.definition, "Go to Definition")
         bufmap("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
@@ -39,20 +39,28 @@ return {
         bufmap("n", "<leader>e", vim.diagnostic.open_float, "Show Diagnostics")
       end
 
-      -- mason-lspconfig に、インストール済みLSPサーバーをセットアップするよう指示
-      require("mason-lspconfig").setup_handlers({
-        function(server_name)
-          -- ここで各LSPサーバーに共通設定を渡す
-          lspconfig[server_name].setup({
-            on_attach = on_attach,
-            capabilities = capabilities,
-          })
-        end,
-      })
-      
-      -- (推奨) よく使うLSPサーバーを自動インストール
+      -- mason-lspconfig の新しいセットアップ方法
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "pyright", "tsserver", "bashls", "dockerls", "jsonls" }
+        -- 1. 自動インストールしたいLSPサーバー
+        ensure_installed = {
+          "lua_ls",
+          "pyright",
+          "tsserver",
+          "bashls",
+          "dockerls",
+          "jsonls",
+        },
+
+        -- 2. 各サーバーに渡す設定 (古い setup_handlers の代わり)
+        handlers = {
+          function(server_name)
+            -- on_attach と capabilities を渡す
+            lspconfig[server_name].setup({
+              on_attach = on_attach,
+              capabilities = capabilities,
+            })
+          end,
+        },
       })
     end,
   },
