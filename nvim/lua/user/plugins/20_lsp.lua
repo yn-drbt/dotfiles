@@ -49,6 +49,9 @@ return {
           "bashls",
           "dockerls",
           "jsonls",
+    	  "yamlls",
+    	  "astro",
+    	  "marksman",
         },
 
         -- 2. 各サーバーに渡す設定 (古い setup_handlers の代わり)
