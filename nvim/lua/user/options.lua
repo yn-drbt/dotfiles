@@ -28,6 +28,8 @@ opt.signcolumn = "yes"     -- 常にサインカラム（LSPの警告など）�
 -- 挙動
 opt.mouse = "a"           -- マウスサポートを有効化
 opt.clipboard = "unnamedplus" -- OSのクリップボードと連携
-opt.wrap = false          -- 折り返さない
+opt.wrap = true           -- (変更) ソフトラップを有効化
+opt.linebreak = true      -- (追加) 単語単位で折り返す
+opt.colorcolumn = "80"    -- (追加) 80文字目のガイドライン
 opt.swapfile = false      -- スワップファイルを作成しない
 opt.backup = false        -- バックアップファイルを作成しない
