@@ -1,0 +1,7 @@
+# alias python="python3 $@"
+# alias emacs="emacs &"
+alias ll="ls -lh --group-directories-first"
+alias lls="ls -lh --group-directories-first"
+alias la="ls -Ah --group-directories-first"
+alias lla="ls -lAh --group-directories-first"
+alias nv="nvim $@"
